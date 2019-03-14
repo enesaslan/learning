@@ -1,0 +1,54 @@
+[
+{
+    "okulNo": 294,
+    "adi": "Mehmet Akif",
+    "soyadi": "Ersoy",
+    "cinsiyet": "Erkek",
+    "basarili": true,
+    "veli": {
+        "adi": "Ali",
+        "soyadi": "Ersoy",
+        "yakinlik": "Baba",
+        "telefonno": 9050123456789
+    }
+},
+{
+    "okulNo": 8111,
+    "adi": "Namık",
+    "soyadi": "Kemal",
+    "cinsiyet": "Erkek",
+    "basarili": false,
+    "veli": {
+        "adi": "Nazan",
+        "soyadi": "Kemal",
+        "yakinlik": "Anne",
+        "telefonno": 9050543456789
+    }
+},
+{
+    "okulNo": 9879,
+    "adi": "Ahmet Hamdi",
+    "soyadi": "Tanpınar",
+    "cinsiyet": "Erkek",
+    "basarili": true,
+    "veli": {
+        "adi": "Fahri",
+        "soyadi": "Tanpınar",
+        "yakinlik": "Baba",
+        "telefonno": 9050541756789
+    }
+},
+{
+    "okulNo": 8111,
+    "adi": "Fatma",
+    "soyadi": "Aliye",
+    "cinsiyet": "Kız",
+    "basarili": true,
+    "veli": {
+        "adi": "Fahriye",
+        "soyadi": "Aliye",
+        "yakinlik": "Anne",
+        "telefonno": 905785456789
+    }
+}
+]
