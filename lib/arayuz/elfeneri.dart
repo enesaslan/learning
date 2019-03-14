@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:lamp/lamp.dart';
 import 'dart:async';
 
-class ElFeneri extends StatefulWidget {
+class ElFeneri extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => FenerState();
 
 }
 
-class  FenerState extends State<ElFeneri> {
 
-  bool _flashVarmi=false;
-  bool _acikmi=false;
+
+class FenerState extends State<ElFeneri>{
+  
+  bool _flashVarMi = false;
+  bool _acikMi = false;
   double _siddeti=1.0;
-  String labma="lampon";
-  String buton="Flash Aç";
+  String lamba="lampoff", btn="Aç", btnRenk="red";
 
   @override
   void initState() {
@@ -24,48 +25,50 @@ class  FenerState extends State<ElFeneri> {
   }
 
   ilkAcilis() async {
-    bool flashVarmi=await Lamp.hasLamp;
-    setState(() { //geri yapma yeniden hot reload yap he R yapıyom bak ordaki Toast mesaj çııyı sayfa açilmiy benim aklıma gelen benim burada kulalndığım resimin o içerdeki widgete sığmaması _?
-     _flashVarmi = flashVarmi; 
+    bool flashVarMi =await Lamp.hasLamp;
+    setState(() {
+     _flashVarMi = flashVarMi; 
     });
   }
 
   Future _feneriAc() async {
-    
-    if (_acikmi){
+    if(_acikMi) {
       Lamp.turnOff();
-      labma="$labma";
-      buton="Aç";
+      lamba="lampoff";
+      btn="Aç";      
     }
-    else {
+    else{
       Lamp.turnOn(intensity: _siddeti);
-      labma="lampoff.png";
-      buton="Kapat";
+      lamba="lampon";
+      btn="Kapat";
     }
     var v =await Lamp.hasLamp;
     setState(() {
-     _flashVarmi = v;
-     _acikmi = !_acikmi; 
+     _flashVarMi = v;
+     _acikMi = !_acikMi; 
     });
-}
+  }
 
-  
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        title: Text("El Feneri"),
+      appBar: AppBar(title: Text("El Feneri Uygulaması"),
       ),
-      body: Column(
+      body: new Center(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset("assets/images/lampoff.png"),
+          Image.asset("assets/images/$lamba.png"),
           RaisedButton(
-            child: Text("Feneri Aç"),
-            onPressed: ()=> _feneriAc(),
+            color: Colors.red,
+            child: Text("Feneri $btn", style: TextStyle(color: Colors.white, fontSize: 20.0),),
+            onPressed: _feneriAc,
           ),
         ],
       ),
+      ),
     );
-  } 
+  }
+
 }

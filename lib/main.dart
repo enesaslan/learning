@@ -10,7 +10,7 @@ import 'arayuz/jsonkonusu.dart';
 import 'arayuz/localjsonkonusu.dart';
 import 'arayuz/basithttp.dart';
 import 'arayuz/elfeneri.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 void main () {
