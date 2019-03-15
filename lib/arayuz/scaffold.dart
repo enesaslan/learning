@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ilk_uygulama/arayuz/widgetlar/anasayfa_card.dart';
 
 class ScaffoldOgesi extends StatelessWidget {
   @override
@@ -269,16 +270,7 @@ class ScaffoldOgesi extends StatelessWidget {
                 ),
               ),
             ),
-            new Container(
-              alignment: Alignment.center,
-              color: Colors.amber,
-              margin: EdgeInsets.all(7.5),
-              child: new Text(
-                "Yeni Container 11",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: "Raleway", fontSize: 22.0),
-              ),
-            ),
+            AnaCard("/elfeneri", "El Feneri Uygulaması"),
             new Container(
               alignment: Alignment.center,
               color: Colors.amber,
