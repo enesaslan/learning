@@ -15,7 +15,7 @@ class AnaCard extends StatelessWidget{
               onTap: (){
                 Navigator.pushNamed(context, rota);
                 Fluttertoast.showToast(
-                    msg: "Text Field Örnek Kullanım Sayfası",
+                    msg: "Giriş Başarılı",
                     gravity: ToastGravity.BOTTOM,
                     toastLength: Toast.LENGTH_SHORT,
                     backgroundColor: Colors.black45,

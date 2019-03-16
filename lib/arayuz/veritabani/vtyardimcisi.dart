@@ -25,17 +25,17 @@ class VtYardimcisi{
   }
 
   _ilkAcilis(Database vt, int versiyon) async {
-    await vt.execute("CREATE TABLE Ogrenci(no INTEGER PRIMARY KEY, isim TEXT, soyisim TEXT, sinif TEXT)");
+    await vt.execute("CREATE TABLE Ogrenci(no INTEGER PRIMARY KEY AUTOINCREMENT, isim TEXT, soyisim TEXT, sinif TEXT)");
   }
 
   Future<int> ogrenciKaydet(Ogrenci ogrenci) async{
-    var veritab=await _vt;
+    var veritab=await veriTabani;
     int cevap =await veritab.insert("Öğrenci", ogrenci.haritaYap());
     return cevap;
   }
 
   Future<List<Ogrenci>> ogrencileriGetir() async {
-    var veritab =await _vt;
+    var veritab =await veriTabani;
 
     List<Map> liste =await veritab.rawQuery("SELECT * FROM Ogrenci");
     List<Ogrenci> ogrenciler = new List();
@@ -49,13 +49,13 @@ class VtYardimcisi{
   }
 
   Future<int> ogrenciSil(Ogrenci ogrnci) async {
-    var veritab =await _vt;
+    var veritab =await veriTabani;
     int cevap =await veritab.rawDelete("DELETE FROM Ogrenci WHERE no = ?", [ogrnci.no]);
     return cevap;
   }
 
   Future<bool> ogrenciGuncelle(Ogrenci ogrnci) async{
-    var veritab =await _vt;
+    var veritab =await veriTabani;
     int cevap=await veritab.update("Ogrenci", ogrnci.haritaYap(), where: "no =?", whereArgs: <int>[ogrnci.no]);
     return cevap > 0 ? true : false;
   }

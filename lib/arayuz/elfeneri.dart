@@ -12,7 +12,7 @@ class ElFeneri extends StatefulWidget{
 
 class FenerState extends State<ElFeneri>{
   
-  bool _flashVarMi = false;
+  bool flashVarMi = false;
   bool _acikMi = false;
   double _siddeti=1.0;
   String lamba="lampoff", btn="Aç", btnRenk="red";
@@ -27,7 +27,7 @@ class FenerState extends State<ElFeneri>{
   ilkAcilis() async {
     bool flashVarMi =await Lamp.hasLamp;
     setState(() {
-     _flashVarMi = flashVarMi; 
+     flashVarMi = flashVarMi; 
     });
   }
 
@@ -44,7 +44,7 @@ class FenerState extends State<ElFeneri>{
     }
     var v =await Lamp.hasLamp;
     setState(() {
-     _flashVarMi = v;
+     flashVarMi = v;
      _acikMi = !_acikMi; 
     });
   }
