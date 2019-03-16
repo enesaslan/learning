@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ilk_uygulama/arayuz/alertvetext.dart';
 import 'package:ilk_uygulama/arayuz/dosyakonusu.dart';
+import 'package:ilk_uygulama/arayuz/veritabani/Vtanasayfa.dart';
 import 'arayuz/ilksayfa.dart';
 import 'arayuz/hello.dart';
 import 'arayuz/scaffold.dart';
@@ -29,6 +30,7 @@ void main () {
         "/basithttp" : (context) => BasitHttp(),
         "/localjsonkonusu" : (context) => LocalJsonKonusu(),
         "/elfeneri" : (context) => ElFeneri(),
+        "/Vtanasayfa" : (context) => VtAnasayfa(),
       },
     ),
   );

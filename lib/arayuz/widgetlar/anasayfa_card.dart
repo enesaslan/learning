@@ -25,7 +25,7 @@ class AnaCard extends StatelessWidget{
                 child: Container(
               alignment: Alignment.center,
               color: Colors.amber,
-              margin: EdgeInsets.all(7.5),
+              margin: EdgeInsets.all(5.0),
               child: new Text(
                 baslik,
                 textAlign: TextAlign.center,
