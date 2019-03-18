@@ -9,6 +9,9 @@ class VtAnasayfa extends StatefulWidget {
 
 class VtState extends State<VtAnasayfa> {
   VtYardimcisi vtYardimcisi = new VtYardimcisi();
+  List<Ogrenci> ogrenciler = new List();
+
+  bool duzenleMi = false;
 
   final formKontrolcu = GlobalKey<FormState>();
 
@@ -16,28 +19,74 @@ class VtState extends State<VtAnasayfa> {
   final soyIsimKontrolcu = TextEditingController();
   final sinifKontrolcu = TextEditingController();
 
-  _ogrenciEkle() {
+  ogrenciEkle() {
     vtYardimcisi
-        .ogrenciKaydet(new Ogrenci(
-            isimKontrolcu.text, soyIsimKontrolcu.text, sinifKontrolcu.text))
+        .ogrenciKaydet(
+          new Ogrenci(isimKontrolcu.text, soyIsimKontrolcu.text, sinifKontrolcu.text))
         .then((deger) {
       debugPrint(deger.toString());
       if (deger > 0) {
+        setState(() => listeYenile());
+        isimKontrolcu.clear();
+        soyIsimKontrolcu.clear();
+        sinifKontrolcu.clear();
         Navigator.pop(context);
       }
     });
   }
 
-  _ogrenciSil(int oNo) {}
-  _ogrenciGuncelle(int oNo) {}
+  _ogrenciSil(Ogrenci ogrenci) {
+    vtYardimcisi.ogrenciSil(ogrenci).then((cvp) {
+      if (cvp > 0) {
+        setState(() => listeYenile());
+      }
+    });
+  }
 
-  void eklemeEkraniAc() {
+  _ogrenciGuncelle(Ogrenci ogrenci) {
+    var ogr = new Ogrenci(isimKontrolcu.text, soyIsimKontrolcu.text, sinifKontrolcu.text);
+    ogr.no=ogrenci.no;
+    vtYardimcisi.ogrenciGuncelle(ogr).then((cvp) {
+      if (cvp) {
+        setState(() => listeYenile());
+        Navigator.pop(context);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listeYenile();
+  }
+
+  listeYenile() {
+    vtYardimcisi.ogrencileriGetir().then((gelen) {
+      setState(() {
+        ogrenciler = gelen;
+      });
+      debugPrint(gelen.toString());
+    });
+  }
+
+  void eklemeEkraniAc({Ogrenci ogrenci}) {
+    if (ogrenci != null) {
+      duzenleMi = true;
+      isimKontrolcu.text = ogrenci.isim;
+      soyIsimKontrolcu.text = ogrenci.soyisim;
+      sinifKontrolcu.text = ogrenci.sinif;
+    } else {
+      duzenleMi = false;
+      isimKontrolcu.clear();
+      soyIsimKontrolcu.clear();
+      sinifKontrolcu.clear();
+    }
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
-            title: Text("Öğrenci Ekle"),
+            title: Text(duzenleMi ? "Öğrenci Düzenle" : "Öğrenci Ekle"),
             content: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -71,8 +120,9 @@ class VtState extends State<VtAnasayfa> {
             ),
             actions: <Widget>[
               FlatButton(
-                onPressed: _ogrenciEkle,
-                child: Text("Öğrenci Ekle"),
+                onPressed: () =>
+                    duzenleMi ? _ogrenciGuncelle(ogrenci) : ogrenciEkle(),
+                child: Text(duzenleMi ? "Düzenle" : "Ekle"),
               ),
               FlatButton(
                 onPressed: () => Navigator.pop(context),
@@ -95,32 +145,35 @@ class VtState extends State<VtAnasayfa> {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Card(
+      body: ListView.builder(
+        itemCount: ogrenciler.length,
+        itemBuilder: (BuildContext baglam, int sira) {
+          return Card(
             child: Column(
               children: <Widget>[
                 ListTile(
-                  title: Text("Öğrencinin Adı Soyadı"),
-                  leading: Text("0"),
-                  subtitle: Text("Öğrencinin Sınıfı"),
+                  title: Text(
+                      "${ogrenciler[sira].isim} ${ogrenciler[sira].soyisim}"),
+                  leading: Text("${ogrenciler[sira].no}"),
+                  subtitle: Text("${ogrenciler[sira].sinif}"),
                 ),
                 Row(
                   children: <Widget>[
                     FlatButton(
-                      onPressed: _ogrenciGuncelle(1),
+                      onPressed: () =>
+                          eklemeEkraniAc(ogrenci: ogrenciler[sira]),
                       child: Text("Öğrenci Güncelle"),
                     ),
                     FlatButton(
-                      onPressed: _ogrenciSil(1),
+                      onPressed: () => _ogrenciSil(ogrenciler[sira]),
                       child: Text("Öğrenci Sil"),
                     ),
                   ],
                 ),
               ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

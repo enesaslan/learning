@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:ilk_uygulama/arayuz/veritabani/ogrenci.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io' as io;
@@ -30,7 +31,7 @@ class VtYardimcisi{
 
   Future<int> ogrenciKaydet(Ogrenci ogrenci) async{
     var veritab=await veriTabani;
-    int cevap =await veritab.insert("Öğrenci", ogrenci.haritaYap());
+    int cevap =await veritab.insert("Ogrenci", ogrenci.haritaYap());
     return cevap;
   }
 

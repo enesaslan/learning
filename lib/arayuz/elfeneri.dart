@@ -65,12 +65,13 @@ class FenerState extends State<ElFeneri>{
             child: Text("Feneri $btn", style: TextStyle(color: Colors.white, fontSize: 20.0),),
             onPressed: _feneriAc,
           ),
+          new RaisedButton(onPressed: () async => await Lamp.flash(new Duration(seconds: 2)), child:  new Text("Flash for 2 seconds")),
           Slider(value: _siddeti, onChanged: _acikMi ? _siddetiDegistir: null,),
           Text("Işık Şiddetini Ayarla", style: TextStyle(fontSize: 28.0),),
         ],
       ),
       ),
-    );
+    ); 
   }
 _siddetiDegistir(double siddet){
   Lamp.turnOn(intensity: siddet);
