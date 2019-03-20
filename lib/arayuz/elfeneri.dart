@@ -35,7 +35,7 @@ class FenerState extends State<ElFeneri>{
     if(_acikMi) {
       Lamp.turnOff();
       lamba="lampoff";
-      btn="Aç";      
+      btn="Aç";
     }
     else{
       Lamp.turnOn(intensity: _siddeti);
@@ -51,7 +51,6 @@ class FenerState extends State<ElFeneri>{
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(title: Text("El Feneri Uygulaması"),
       ),

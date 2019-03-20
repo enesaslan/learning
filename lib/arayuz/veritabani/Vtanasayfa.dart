@@ -153,9 +153,9 @@ class VtState extends State<VtAnasayfa> {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                      "${ogrenciler[sira].isim} ${ogrenciler[sira].soyisim}"),
-                  leading: Text("${ogrenciler[sira].no}"),
-                  subtitle: Text("${ogrenciler[sira].sinif}"),
+                      "A Soyad : ${ogrenciler[sira].isim} ${ogrenciler[sira].soyisim}"),
+                  leading: Text("Okul No : ${ogrenciler[sira].no}"),
+                  subtitle: Text("Sınıfı : ${ogrenciler[sira].sinif}"),
                 ),
                 Row(
                   children: <Widget>[

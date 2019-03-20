@@ -29,6 +29,7 @@ dependencies:
   http: ^0.12.0+1
   lamp: ^0.0.6
   sqflite: ^0.12.2+1
+  font_awesome_flutter: ^8.4.0
   
 
 dev_dependencies:
